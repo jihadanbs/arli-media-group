@@ -1,996 +1,810 @@
-import React, { useState } from "react";
+import React from "react";
 
 function App() {
-  const [modalAmount, setModalAmount] = useState(500000);
-  const [showNextSection, setShowNextSection] = useState(false);
-  const minAmount = 100000;
-  const maxAmount = 10000000;
-
-  const calculateProfit = (amount: number) => {
-    return Math.floor(amount * 102.1);
-  };
-
-  const formatRupiah = (amount: number) => {
-    return new Intl.NumberFormat("id-ID").format(amount);
-  };
-
-  const handleSliderChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    setModalAmount(parseInt(e.target.value));
-  };
-
+  // Fungsi untuk menangani klik CTA utama
   const handleCTAClick = () => {
-    setShowNextSection(true);
-    setTimeout(() => {
-      document.getElementById("next-section")?.scrollIntoView({
-        behavior: "smooth",
-        block: "start",
-      });
-    }, 100);
+    // Ganti dengan link pembelian/WhatsApp Anda
+    console.log("Tombol CTA diklik!");
+    window.open(
+      "https://wa.me/6281234567890?text=Halo,%20saya%20tertarik%20dengan%20Cleanoz!",
+      "_blank"
+    );
   };
 
   return (
     <>
-      <div className="pageWrapper">
-        {/* Main Card Section */}
-        <div className="container">
-          <div className="mainCard">
-            {/* Header Section */}
-            <div className="header">
-              <div className="headerText">
-                <h1 className="headerTitle">
-                  Berapa Juta yang
-                  <br />
-                  Bisa Dihasilkan dari
-                  <br />
-                  Modal Anda?
-                </h1>
-
-                <div className="headerDescription">
-                  <p className="descriptionHighlight">
-                    <span className="mr-2">⚡</span>
-                    Geser & Lihat Sendiri.
-                  </p>
-                  <p className="descriptionSubtext">
-                    Simulasikan kekuatan efek bola
-                    <br />
-                    salju pada modal awal Anda.
-                  </p>
-                </div>
-              </div>
-
-              {/* Profile Image */}
-              <div className="profileImageWrapper">
-                <div className="profileImageCard">
-                  <div className="profileImageGradient"></div>
-                  <div className="profileImageContent">
-                    <div className="iconWrapper">
-                      <span className="text-2xl">💰</span>
-                    </div>
-                    <div className="lineArt">
-                      <div className="line1"></div>
-                      <div className="line2"></div>
-                      <div className="line3"></div>
-                    </div>
-                  </div>
-                  <div className="liveIndicator"></div>
-                </div>
-              </div>
-            </div>
-
-            {/* Slider Section */}
-            <div className="mb-8">
-              <div className="sliderHeader">
-                <p className="sliderTitle">Mulai dengan Modal Awal:</p>
-                <div className="liveBadge">
-                  <div className="livePulseYellow"></div>
-                  <span className="text-xs text-gray-400">Live</span>
-                </div>
-              </div>
-
-              {/* Custom Slider */}
-              <div className="relative mb-6">
-                <input
-                  type="range"
-                  min={minAmount}
-                  max={maxAmount}
-                  value={modalAmount}
-                  onChange={handleSliderChange}
-                  className="slider"
-                  style={{
-                    background: `linear-gradient(to right, #fbbf24 0%, #fbbf24 ${
-                      ((modalAmount - minAmount) / (maxAmount - minAmount)) *
-                      100
-                    }%, #374151 ${
-                      ((modalAmount - minAmount) / (maxAmount - minAmount)) *
-                      100
-                    }%, #374151 100%)`,
-                  }}
-                />
-                <div className="sliderLabels">
-                  <span>Rp {formatRupiah(minAmount)}</span>
-                  <span>Rp {formatRupiah(maxAmount)}</span>
-                </div>
-              </div>
-
-              {/* Amount Display */}
-              <div className="amountDisplay">
-                <span className="amountText">
-                  Rp {formatRupiah(modalAmount)}
-                </span>
-              </div>
-            </div>
-
-            {/* Profit Potential Section */}
-            <div className="profitSection">
-              <div className="text-center">
-                <p className="profitTitle">POTENSI KEUNTUNGAN BERSIH ANDA</p>
-                <p className="profitSubtitle">(setelah 5x putaran)</p>
-                <div className="relative">
-                  <p className="profitAmount">
-                    Rp {formatRupiah(calculateProfit(modalAmount))}
-                  </p>
-                  <div className="profitGlow"></div>
-                </div>
-                <div className="realtimeBadge">
-                  <div className="liveBounceGreen"></div>
-                  <span className="text-xs text-green-400">
-                    Estimasi Real-time
-                  </span>
-                </div>
-              </div>
-            </div>
-
-            {/* CTA Button */}
-            <button onClick={handleCTAClick} className="ctaButton">
-              <span className="ctaText">
-                <span className="mr-2">🚀</span>
-                Jadiin Kenyataan, Praktek Sekarang!
-              </span>
-              <div className="ctaHoverGlow"></div>
+      <div className="cleanoz-body">
+        {/* Bagian Headline */}
+        <header className="hero-section">
+          <div className="hero-content">
+            <h1 className="main-headline">
+              Boros Bensin Bikin Dompet Tipis? <br />
+              <span className="highlight-orange">Gas Tipis Pakai Cleanoz!</span>
+            </h1>
+            <p className="sub-headline">
+              Tiga Tetes Bukan Cuma Irit, Tapi Bikin Mesin Enteng, Suara Halus,
+              Dan Hemat Biaya Servis!
+            </p>
+            <button onClick={handleCTAClick} className="cta-button">
+              KIRIM SAYA CLEANOZ SEKARANG
             </button>
-
-            {/* Trust indicators */}
-            <div className="trustIndicators">
-              <div className="indicatorItem">
-                <div className="indicatorDotGreen"></div>
-                <span>Aman & Terpercaya</span>
-              </div>
-              <div className="indicatorSeparator"></div>
-              <div className="indicatorItem">
-                <div className="indicatorDotBlue"></div>
-                <span>Hasil Real-time</span>
-              </div>
-            </div>
           </div>
-        </div>
+          <div className="hero-image-container">
+            <img
+              src="https://cdn.scalev.id/Image/_80DHjOh15B-7JCgbxr9fvoGNEeow1etLsnhm-ELi7s/1740124810449-headline_LP_scalev.webp"
+              alt="Produk Cleanoz dengan latar belakang oranye"
+              className="hero-image"
+            />
+          </div>
+        </header>
 
-        {/* Next Section - Muncul setelah klik CTA */}
-        {showNextSection && (
-          <div id="next-section" className="nextSection">
+        <main>
+          {/* Bagian Provokatif Opening */}
+          <section className="provocative-section">
             <div className="container">
-              <div className="nextSectionContent">
-                {/* Problem Section */}
-                <div className="mb-12 text-center">
-                  <h2 className="problemTitle">
-                    Apakah Ini yang Sedang Anda Rasakan?
-                  </h2>
-                  <div className="problemList">
-                    <div className="problemItem">
-                      <span className="text-xl text-red-400">❌</span>
-                      <p className="text-gray-300">
-                        Punya keinginan kuat buka usaha, tapi selalu mentok,
-                        "Harus mulai dari mana, ya?"
-                      </p>
-                    </div>
-                    <div className="problemItem">
-                      <span className="text-xl text-red-400">❌</span>
-                      <p className="text-gray-300">
-                        Sudah nonton banyak video, tapi bukannya jelas, malah
-                        makin bingung dan kewalahan.
-                      </p>
-                    </div>
-                  </div>
-                </div>
-
-                {/* Solution Section */}
-                <div className="mb-12 text-center">
-                  <h2 className="solutionTitle">
-                    Ini Bukan Kelas Teori, Ini BENGKEL PRAKTIK.
-                  </h2>
-                  <p className="solutionDescription">
-                    Di Minicourse Produk Solusi, kita akan bongkar kebingungan
-                    Anda menjadi aksi nyata. Ini yang akan kita praktikkan
-                    bersama:
+              <h2 className="section-title text-center">
+                Pernah Ngerasa{" "}
+                <span className="highlight-orange">Gaji Habis</span> Cuma Buat
+                Isi Bensin?
+              </h2>
+              <div className="provocative-grid">
+                <div className="provocative-text">
+                  <p>
+                    Tarikan motor makin berat. Dompet makin sesak. Hidup rasanya
+                    diem di tempat.
+                  </p>
+                  <p>
+                    Padahal setiap hari harus ngerit di jalanan. Cari nafkah.
+                    Kirim barang. Jemput anak.
+                  </p>
+                  <p className="strong-text">
+                    Apa nggak capek kalau semua tenaga habis cuma buat bayar
+                    bensin?
+                  </p>
+                  <p className="strong-text highlight-green">
+                    Rakyat kecil kayak kita nggak boleh kalah sama krisis.
+                    Karena hemat BBM itu bukan cuma soal bensin. Tapi soal bisa
+                    bertahan hidup.
                   </p>
                 </div>
-
-                {/* Features Grid */}
-                <div className="featuresGrid">
-                  <div className="featureCard">
-                    <div className="featureHeader">
-                      <span className="mr-3 text-2xl">💡</span>
-                      <h3 className="featureTitle">
-                        Praktik Mencari Ide Produk
-                      </h3>
-                    </div>
-                    <p className="text-gray-300">
-                      Kita akan praktik cara menemukan ide produk yang dicari
-                      banyak orang dari masalah di sekitar kita. Anda akan
-                      belajar melihat peluang di setiap keluhan.
-                    </p>
-                  </div>
-                  <div className="featureCard">
-                    <div className="featureHeader">
-                      <span className="mr-3 text-2xl">🎯</span>
-                      <h3 className="featureTitle">
-                        Praktik Memfilter Ide (Anti Bingung)
-                      </h3>
-                    </div>
-                    <p className="text-gray-300">
-                      Khusus untuk Anda yang punya terlalu banyak ide, kita akan
-                      praktik cara memfilternya. Anda akan bisa memilih satu ide
-                      terbaik yang paling mudah dieksekusi.
-                    </p>
-                  </div>
-                  <div className="featureCard">
-                    <div className="featureHeader">
-                      <span className="mr-3 text-2xl">🔓</span>
-                      <h3 className="featureTitle">
-                        Bocoran Tempat Cari Formula Ampuh & Gratis
-                      </h3>
-                    </div>
-                    <p className="text-gray-300">
-                      Saya akan tunjukkan di mana dan bagaimana cara mencari
-                      formula produk yang gratis, legal, tapi sangat ampuh. Anda
-                      tidak perlu riset dari nol.
-                    </p>
-                  </div>
-                  <div className="featureCard">
-                    <div className="featureHeader">
-                      <span className="mr-3 text-2xl">📋</span>
-                      <h3 className="featureTitle">
-                        Dapatkan Action Plan yang Terbukti
-                      </h3>
-                    </div>
-                    <p className="text-gray-300">
-                      Anda akan mendapatkan checklist action plan yang sama
-                      persis seperti yang saya gunakan untuk memutar modal kecil
-                      hingga tembus miliaran.
-                    </p>
-                  </div>
-                </div>
-
-                {/* Testimonial Section */}
-                <div className="testimonialSection">
-                  <h3 className="testimonialMainTitle">
-                    Ini Bukan Teori, Ini Pengalaman Pribadi Saya.
-                  </h3>
-                  <div className="text-center">
-                    <div className="testimonialCard">
-                      <p className="testimonialText">
-                        "Metode yang akan saya bagikan ini bukan sekadar teori
-                        yang saya baca dari buku. Ini adalah pengalaman nyata
-                        saya sejak tahun 2012.
-                      </p>
-                      <p className="testimonialText">
-                        Saya memulai dengan modal hanya Rp 900.000, dan dengan
-                        menerapkan prinsip 'Produk Solusi' dan 'Efek Bola
-                        Salju', modal tersebut berhasil saya putar hingga
-                        menjadi Rp 1,4 Miliar.
-                      </p>
-                      <p className="testimonialTextNoMargin">
-                        Perjalanan ini tidak instan, tapi metodenya terbukti
-                        berhasil. Dan karena keberhasilan ini, kisah saya
-                        diliput oleh berbagai media nasional sebagai bukti bahwa
-                        cara ini nyata."
-                      </p>
-                    </div>
-                  </div>
-                </div>
-
-                {/* Pricing Section */}
-                <div className="pricingSection">
-                  <h3 className="pricingTitle">
-                    Penawaran Spesial Ini Akan Berakhir!
-                  </h3>
-                  <div className="mb-6">
-                    <p className="originalPrice">Harga Normal: Rp 400.000</p>
-                    <p className="specialPrice">
-                      HARGA SPESIAL SAAT INI: Rp 90.000
-                    </p>
-                  </div>
-                  <button className="finalCtaButton">
-                    Daftar dengan Harga Spesial Sekarang!
-                  </button>
+                <div className="provocative-image">
+                  <img
+                    src="https://cdn.scalev.id/Image/WjYbTMfsRQ5_95XzAAe9aI8H88dv77H0suUWZm2CRds/1740110069436-images_3499951710837471855.webp"
+                    alt="Pria memegang helm dengan ekspresi lelah"
+                  />
                 </div>
               </div>
             </div>
+          </section>
+
+          {/* Bagian Masalah */}
+          <section className="problem-section">
+            <div className="container">
+              <div className="problem-content">
+                <div className="problem-image">
+                  <img
+                    src="https://cdn.scalev.id/Image/sfeKLm-8W4HKyeFU-Xyiisf50OPX1ygZwsxotFeCTfI/1740105354536-images_5739451732158302543.webp"
+                    alt="Ilustrasi bensin mahal dan servis mahal"
+                  />
+                </div>
+                <div className="problem-list">
+                  <h3 className="list-title">"Gas Tipis, Anti Krisis.”</h3>
+                  <p className="list-subtitle">
+                    Kalau masih ngandelin cara lama, ya bakal ngerasa capek
+                    terus.
+                  </p>
+                  <ul>
+                    <li>
+                      <span>❌</span> Bensin makin mahal, tapi kerja nggak bisa
+                      berhenti.
+                    </li>
+                    <li>
+                      <span>❌</span> Mesin motor/mobil makin berat, keluar
+                      biaya servis makin mahal.
+                    </li>
+                    <li>
+                      <span>❌</span> Udah irit-irit, tetap habis cuma buat beli
+                      bensin.
+                    </li>
+                    <li>
+                      <span>❌</span> Mau nabung, susah. Habis buat jalan terus.
+                    </li>
+                    <li>
+                      <span>❌</span> Capek rasanya, kayak kerja nggak pernah
+                      cukup.
+                    </li>
+                  </ul>
+                </div>
+              </div>
+            </div>
+          </section>
+
+          {/* Bagian Solusi */}
+          <section className="solution-section">
+            <div className="container text-center">
+              <h2 className="section-title">
+                Cleanoz Hadir Bukan Cuma Buat{" "}
+                <span className="highlight-orange">Irit Bensin.</span>
+              </h2>
+              <p className="solution-subtitle">
+                Cleanoz adalah cara rakyat kecil{" "}
+                <span className="highlight-green">ngelawan krisis.</span>
+              </p>
+              <div className="solution-flow">
+                <p>
+                  Tetesin Cleanoz ke tangki bensin ➡️ Mesin bersih ➡️ BBM lebih
+                  irit ➡️ Tarikan enteng ➡️ Dompet lebih aman.
+                </p>
+              </div>
+              <p className="strong-text">Ini bukan sulap. Ini solusi.</p>
+              <p>
+                Karena setiap tetes Cleanoz nyimpen tenaga besar buat bikin
+                hidup tetap jalan.
+              </p>
+              <div className="solution-images">
+                <img
+                  src="https://cdn.scalev.id/Image/d6J120s-MAiouxwubFFk9xShj-AJvDmWrm-jYqFC0Fg/1740105489408-images_8188821710837559593.webp"
+                  alt="Pria mengacungkan jempol di samping mobilnya"
+                />
+                <img
+                  src="https://cdn.scalev.id/Image/JUtBttAUoiW87a5FtXQkrp4Vh50Av4WGh6aq6qt_gzw/save.gif"
+                  alt="Animasi GIF mesin bekerja"
+                />
+                <img
+                  src="https://cdn.scalev.id/Image/Rp5bncNEKTSLhA5K_xPNamJBuH7xu4s3sST2R3zxgQg/1740105550114-images_7642981710837559675_1.webp"
+                  alt="Produk Cleanoz"
+                />
+              </div>
+            </div>
+          </section>
+
+          {/* Bagian Benefit Utama */}
+          <section className="benefits-section">
+            <div className="container">
+              <h2 className="section-title text-center">
+                Setiap Tetesnya Memberi{" "}
+                <span className="highlight-orange">Banyak Keuntungan</span>
+              </h2>
+              <div className="benefits-grid">
+                <div className="benefit-item">
+                  <img
+                    src="https://cdn.scalev.id/Image/MZGHOcb98E9E4mUDGEbmI30LUn8nFqbPhcAfIl_xvMM/1740125254719-icon_benefit.webp"
+                    alt="Ikon penghematan bensin"
+                  />
+                  <h3>Bensin Jadi Jauh Lebih Irit</h3>
+                  <p>
+                    Penghematan BBM hingga 20-40%, cocok untuk kendaraan
+                    pribadi, usaha, hingga mesin kapal.
+                  </p>
+                </div>
+                <div className="benefit-item">
+                  <img
+                    src="https://cdn.scalev.id/Image/MZGHOcb98E9E4mUDGEbmI30LUn8nFqbPhcAfIl_xvMM/1740125254719-icon_benefit.webp"
+                    alt="Ikon tarikan mesin responsif"
+                  />
+                  <h3>Tarikan Mesin Enteng & Responsif</h3>
+                  <p>
+                    Mesin lebih ringan saat akselerasi, tenaga lebih maksimal,
+                    nyaman saat bawa beban berat atau tanjakan.
+                  </p>
+                </div>
+                <div className="benefit-item">
+                  <img
+                    src="https://cdn.scalev.id/Image/MZGHOcb98E9E4mUDGEbmI30LUn8nFqbPhcAfIl_xvMM/1740125254719-icon_benefit.webp"
+                    alt="Ikon suara mesin halus"
+                  />
+                  <h3>Suara Mesin Lebih Halus & Senyap</h3>
+                  <p>
+                    Mengurangi suara kasar, bikin mesin lebih halus dan tenang
+                    saat dipacu.
+                  </p>
+                </div>
+                <div className="benefit-item">
+                  <img
+                    src="https://cdn.scalev.id/Image/MZGHOcb98E9E4mUDGEbmI30LUn8nFqbPhcAfIl_xvMM/1740125254719-icon_benefit.webp"
+                    alt="Ikon perlindungan mesin"
+                  />
+                  <h3>Mencegah Kerusakan Mesin</h3>
+                  <p>
+                    Membersihkan sisa pembakaran dan mencegah kerak karbon yang
+                    menempel di piston.
+                  </p>
+                </div>
+                <div className="benefit-item">
+                  <img
+                    src="https://cdn.scalev.id/Image/MZGHOcb98E9E4mUDGEbmI30LUn8nFqbPhcAfIl_xvMM/1740125254719-icon_benefit.webp"
+                    alt="Ikon hasil instan"
+                  />
+                  <h3>Nggak Perlu Nunggu Lama</h3>
+                  <p>
+                    Hasil bisa langsung dirasakan sejak pemakaian pertama, mesin
+                    lebih enteng dan irit BBM.
+                  </p>
+                </div>
+                <div className="benefit-item">
+                  <img
+                    src="https://cdn.scalev.id/Image/MZGHOcb98E9E4mUDGEbmI30LUn8nFqbPhcAfIl_xvMM/1740125254719-icon_benefit.webp"
+                    alt="Ikon oli lebih awet"
+                  />
+                  <h3>Oli Jadi Lebih Awet</h3>
+                  <p>
+                    Oli 2x lipat lebih bersih dan tahan lama karena ruang bakar
+                    lebih bersih.
+                  </p>
+                </div>
+              </div>
+            </div>
+          </section>
+
+          {/* Bagian Testimoni */}
+          <section className="testimonial-section">
+            <div className="container">
+              <h2 className="section-title text-center">
+                Sudah Teruji di Lebih Dari{" "}
+                <span className="highlight-orange">137.000 Kendaraan</span>
+              </h2>
+              <p className="testimonial-subtitle">
+                Banyak testimoni asli pengguna di media sosial, chat WhatsApp,
+                Telegram, dan video YouTube.
+              </p>
+              <div className="testimonial-grid">
+                <img
+                  src="https://cdn.scalev.id/Image/yvVYvCfNskdCJpCCYr7hl_20JVaQc4NsSuwUC7paH6g/1740106471143-images_8242131732162002708.webp"
+                  alt="Testimoni chat 1"
+                />
+                <img
+                  src="https://cdn.scalev.id/Image/sEtUpeuCGwYjDRYSWOYN4nzW03p7sXTvy6KJUuReRTE/1740106560493-images_5368361732162116127_1.webp"
+                  alt="Testimoni chat 2"
+                />
+                <img
+                  src="https://cdn.scalev.id/Image/RrNcD8TLCq5Y_KFbNpi7M_PFcMri4MUNGoqFqG--h84/1740106664357-images_9440881732162370426.webp"
+                  alt="Testimoni chat 3"
+                />
+                <img
+                  src="https://i.ytimg.com/vi/vgjzF0JqfoM/hqdefault.jpg"
+                  alt="Testimoni YouTube 1"
+                />
+                <img
+                  src="https://i.ytimg.com/vi/BJ172CrlpfE/hqdefault.jpg"
+                  alt="Testimoni YouTube 2"
+                />
+                <img
+                  src="https://i.ytimg.com/vi/O_2V0sJOuGc/hqdefault.jpg"
+                  alt="Testimoni YouTube 3"
+                />
+              </div>
+              <div className="influencer-testimonial">
+                <img
+                  src="https://cdn.scalev.id/Image/Nn3jQwBzPY2gMVipmGZM6qAjIIwf-_fz7pZjVfK_qaw/1740106851040-images_1863501731913227260.webp"
+                  alt="Ridwan Hanif memegang produk Cleanoz"
+                />
+                <div>
+                  <h3>Direview oleh Ahlinya</h3>
+                  <p>
+                    "Cairan ini beneran bisa bantu bersihin kerak di mesin,
+                    bikin pembakaran lebih sempurna. Efeknya, bensin jadi lebih
+                    irit. Cocok buat yang kendaraannya dipakai harian." -{" "}
+                    <strong>Ridwan Hanif, Otomotif Influencer</strong>
+                  </p>
+                  <img
+                    src="https://i.ytimg.com/vi/bemupKqha2M/hqdefault.jpg"
+                    alt="Thumbnail YouTube Ridwan Hanif"
+                    className="yt-thumbnail"
+                  />
+                </div>
+              </div>
+            </div>
+          </section>
+
+          {/* Bagian Penawaran / CTA Akhir */}
+          <section className="offer-section">
+            <div className="container">
+              <img
+                src="https://cdn.scalev.id/Image/PDu4pBDZ1P69C58iKpyUauDJ6isztnAofWHyt0EuY1U/1740108079282-images_9704621732158234215.webp"
+                alt="Tombol promo spesial hari ini"
+                className="promo-button-image"
+              />
+              <div className="offer-content">
+                <div className="offer-product">
+                  <img
+                    src="https://cdn.scalev.id/Image/qUNt4WgjgZop88jSw8Ssyte5ITCd2Fx0Sj09fzWT6Rw/1740105611249-images_7436651710837578894.webp"
+                    alt="Satu kotak Cleanoz berisi 4 botol"
+                  />
+                </div>
+                <div className="offer-details">
+                  <h3 className="offer-title">Apa yang Akan Anda Dapatkan?</h3>
+                  <ul>
+                    <li>✅ Cairan aditif pembersih ruang bakar mesin</li>
+                    <li>✅ Hemat BBM hingga 20-40%</li>
+                    <li>✅ Mesin lebih enteng, performa terjaga</li>
+                    <li>✅ Suara mesin lebih halus</li>
+                    <li>✅ Penggunaan super praktis — tinggal tetes</li>
+                    <li className="bonus-item">
+                      <img
+                        src="https://cdn.scalev.id/Image/eMITD5lVVjei4y2QcFcPT7ahFvyk7t55HpPv94fx_qA/1740108102829-images_7016781731659141551.webp"
+                        alt="Bonus Emas 24K"
+                      />
+                      <span>
+                        <span className="highlight-orange">BONUS EMAS 24K</span>{" "}
+                        setiap pembelian 1 kotak (isi 4 botol)
+                      </span>
+                    </li>
+                  </ul>
+                  <button
+                    onClick={handleCTAClick}
+                    className="cta-button final-cta"
+                  >
+                    KIRIM SAYA CLEANOZ + BONUS EMASNYA!
+                  </button>
+                  <img
+                    src="https://cdn.scalev.id/Image/iuQDv_XWTq5qzugAqf9OhYuiRj8VdnmpwZ0f8KAmOXg/1740108823242-images_3171531710837787904.webp"
+                    alt="Jaminan kualitas terbaik"
+                    className="quality-badge"
+                  />
+                </div>
+              </div>
+            </div>
+          </section>
+        </main>
+
+        {/* Bagian Footer */}
+        <footer className="footer-section">
+          <div className="container text-center">
+            <h2>Hidup memang berat.</h2>
+            <h2 className="highlight-green">
+              Tapi rakyat kecil nggak boleh kalah.
+            </h2>
+            <p>Cleanoz bukan cuma cairan irit bensin.</p>
+            <p className="strong-text">
+              Cleanoz adalah gerakan{" "}
+              <span className="highlight-orange">#AntiKrisis.</span>
+            </p>
+            <p className="footer-closing">
+              Karena setiap tetes Cleanoz, adalah tenaga buat hidup tetap jalan.
+            </p>
+            <small>
+              &copy; {new Date().getFullYear()} Cleanoz Indonesia. All Rights
+              Reserved.
+            </small>
           </div>
-        )}
+        </footer>
       </div>
 
-      {/* --- BLOK CSS DIMULAI DI SINI --- */}
       <style>{`
-        /* General Setup */
-        .pageWrapper {
-          min-height: 100vh;
-          background-color: #0f172a; /* bg-slate-900 */
-          font-family: sans-serif;
-          color: #ffffff;
+        /* Import Font */
+        @import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700;900&family=Anton&display=swap');
+
+        /* CSS Reset & Global Styles */
+        * {
+          box-sizing: border-box;
+          margin: 0;
+          padding: 0;
+        }
+
+        .cleanoz-body {
+          font-family: 'Montserrat', sans-serif;
+          background-color: #f4f4f4;
+          color: #333;
+          line-height: 1.6;
         }
 
         .container {
-          width: 100%;
-          margin-left: auto;
-          margin-right: auto;
-          padding-left: 1rem;
-          padding-right: 1rem;
-          padding-top: 2rem; /* py-8 */
-          padding-bottom: 2rem;
+          max-width: 1100px;
+          margin: 0 auto;
+          padding: 0 20px;
         }
 
-        @media (min-width: 1024px) {
-          .container {
-            padding-top: 4rem; /* lg:py-16 */
-            padding-bottom: 4rem;
-          }
-        }
-
-        .mainCard {
-          max-width: 56rem; /* max-w-4xl */
-          margin-left: auto;
-          margin-right: auto;
-          border-radius: 1rem; /* rounded-2xl */
-          border: 1px solid #334155; /* border-slate-700 */
-          background-image: linear-gradient(to bottom right, #0f172a, #1e293b, #0f172a); /* from-slate-900 via-slate-800 to-slate-900 */
-          padding: 1rem; /* p-4 */
-          box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.25); /* shadow-2xl */
-        }
-
-        @media (min-width: 640px) {
-          .mainCard {
-            padding: 1.5rem; /* sm:p-6 */
-          }
-        }
-        @media (min-width: 1024px) {
-          .mainCard {
-            padding: 2rem; /* lg:p-8 */
-          }
-        }
-
-        /* Header Section */
-        .header {
-          margin-bottom: 2rem; /* mb-8 */
-          display: flex;
-          flex-direction: column;
-          align-items: flex-start;
-          justify-content: space-between;
-          gap: 1.5rem; /* gap-6 */
-        }
-        @media (min-width: 1024px) {
-          .header {
-            flex-direction: row;
-          }
-        }
-
-        .headerText {
-          flex: 1 1 0%;
-        }
-
-        .headerTitle {
-          margin-bottom: 1rem; /* mb-4 */
-          font-size: 1.25rem; /* text-xl */
-          line-height: 1.25; /* leading-tight */
-          font-weight: 700; /* font-bold */
-          background-image: linear-gradient(to right, #ffffff, #d1d5db); /* from-white to-gray-300 */
-          -webkit-background-clip: text;
-          background-clip: text;
-          color: transparent;
-        }
-        @media (min-width: 640px) {
-          .headerTitle {
-            font-size: 1.5rem; /* sm:text-2xl */
-          }
-        }
-        @media (min-width: 1024px) {
-          .headerTitle {
-            font-size: 1.875rem; /* lg:text-3xl */
-          }
-        }
-
-        .headerDescription {
-          margin-bottom: 1rem;
-        }
-
-        .descriptionHighlight {
-          margin-bottom: 0.5rem; /* mb-2 */
-          display: flex;
-          align-items: center;
-          font-size: 1rem; /* text-base */
-          font-weight: 600; /* font-semibold */
-          color: #facc15; /* text-yellow-400 */
-        }
-
-        @media (min-width: 640px) {
-          .descriptionHighlight {
-            font-size: 1.125rem; /* sm:text-lg */
-          }
-        }
-
-        .descriptionSubtext {
-          font-size: 0.875rem; /* text-sm */
-          line-height: 1.625; /* leading-relaxed */
-          color: #9ca3af; /* text-gray-400 */
-        }
-
-        /* Profile Image Section */
-        .profileImageWrapper {
-          display: flex;
-          width: 100%;
-          justify-content: center;
-        }
-        @media (min-width: 1024px) {
-          .profileImageWrapper {
-            width: auto;
-            justify-content: flex-end;
-          }
-        }
-
-        .profileImageCard {
-          position: relative;
-          height: 10rem;   /* h-40 */
-          width: 8rem;   /* w-32 */
-          transform: scale(1); /* base transform */
-          overflow: hidden;
-          border-radius: 1rem; /* rounded-2xl */
-          background-image: linear-gradient(to bottom right, #f59e0b, #d97706, #b45309);
-          box-shadow: 0 10px 15px -3px rgba(0,0,0,0.1), 0 4px 6px -2px rgba(0,0,0,0.05);
-          transition: transform 0.3s ease-in-out;
-        }
-        .profileImageCard:hover {
-          transform: scale(1.05);
-        }
-
-        @media (min-width: 640px) {
-          .profileImageCard {
-            height: 11rem;
-            width: 9rem;
-          }
-        }
-        @media (min-width: 1024px) {
-          .profileImageCard {
-            height: 10rem;
-            width: 8rem;
-          }
-        }
-
-        .profileImageGradient {
-          position: absolute;
-          inset: 0;
-          background-image: linear-gradient(to top, rgba(0,0,0,0.2), transparent);
-        }
-
-        .profileImageContent {
-          display: flex;
-          height: 100%;
-          flex-direction: column;
-          align-items: center;
-          justify-content: center;
-          padding: 1rem;
+        .text-center {
           text-align: center;
         }
 
-        .iconWrapper {
-          margin-bottom: 0.75rem;
-          display: flex;
-          height: 4rem;
-          width: 4rem;
-          align-items: center;
-          justify-content: center;
-          border-radius: 9999px;
-          background-color: rgba(255, 255, 255, 0.2);
-          box-shadow: 0 4px 6px -1px rgba(0,0,0,0.1), 0 2px 4px -1px rgba(0,0,0,0.06);
-          backdrop-filter: blur(4px);
-        }
-
-        .lineArt {
-          display: flex;
-          flex-direction: column;
-          gap: 0.25rem;
-        }
-        .line1, .line2, .line3 {
-          height: 0.25rem;
-          border-radius: 9999px;
-          background-color: rgba(255, 255, 255, 0.4);
-          margin-left: auto;
-          margin-right: auto;
-        }
-        .line1 { width: 3rem; }
-        .line2 { width: 2rem; }
-        .line3 { width: 2.5rem; }
-
-
-        .liveIndicator {
-          position: absolute;
-          top: -0.5rem;
-          right: -0.5rem;
-          height: 1.5rem;
-          width: 1.5rem;
-          border-radius: 9999px;
-          border: 2px solid #1e293b;
-          background-color: #22c55e;
-          animation: pulse 2s cubic-bezier(0.4, 0, 0.6, 1) infinite;
-        }
-
-        @keyframes pulse {
-          0%, 100% {
-            opacity: 1;
-          }
-          50% {
-            opacity: 0.5;
-          }
-        }
-
-        @keyframes bounce {
-          0%, 100% {
-            transform: translateY(-25%);
-            animation-timing-function: cubic-bezier(0.8, 0, 1, 1);
-          }
-          50% {
-            transform: translateY(0);
-            animation-timing-function: cubic-bezier(0, 0, 0.2, 1);
-          }
-        }
-
-        .sliderHeader {
-          margin-bottom: 1rem;
-          display: flex;
-          flex-direction: column;
-          align-items: flex-start;
-          justify-content: space-between;
-          gap: 0.5rem;
-        }
-        @media (min-width: 640px) {
-          .sliderHeader {
-            flex-direction: row;
-            align-items: center;
-          }
-        }
-
-        .sliderTitle {
-          font-size: 1rem;
-          font-weight: 600;
-          color: #ffffff;
-        }
-        @media (min-width: 1024px) {
-          .sliderTitle {
-            font-size: 1.125rem;
-          }
-        }
-
-        .liveBadge {
-          display: flex;
-          align-items: center;
-          gap: 0.5rem;
-        }
-        .livePulseYellow {
-          height: 0.5rem;
-          width: 0.5rem;
-          border-radius: 9999px;
-          background-color: #facc15;
-          animation: pulse 2s cubic-bezier(0.4, 0, 0.6, 1) infinite;
-        }
-
-        .slider {
-          -webkit-appearance: none;
-          appearance: none;
-          width: 100%;
-          height: 0.75rem;
-          cursor: pointer;
-          border-radius: 9999px;
-          background-color: #334155;
-        }
-
-        .slider::-webkit-slider-thumb {
-          -webkit-appearance: none;
-          appearance: none;
-          width: 24px;
-          height: 24px;
-          background: linear-gradient(45deg, #fbbf24, #f59e0b);
-          border-radius: 50%;
-          cursor: pointer;
-          box-shadow: 0 4px 12px rgba(251, 191, 36, 0.4);
-          border: 2px solid #1e293b;
-          transition: all 0.2s ease;
-        }
-
-        .slider::-webkit-slider-thumb:hover {
-          transform: scale(1.1);
-          box-shadow: 0 6px 16px rgba(251, 191, 36, 0.6);
-        }
-
-        .slider::-moz-range-thumb {
-          width: 24px;
-          height: 24px;
-          background: linear-gradient(45deg, #fbbf24, #f59e0b);
-          border-radius: 50%;
-          cursor: pointer;
-          box-shadow: 0 4px 12px rgba(251, 191, 36, 0.4);
-          border: 2px solid #1e293b;
-          transition: all 0.2s ease;
-        }
-
-        @media (max-width: 640px) {
-          .slider::-webkit-slider-thumb {
-            width: 20px;
-            height: 20px;
-          }
-          .slider::-moz-range-thumb {
-            width: 20px;
-            height: 20px;
-          }
-        }
-
-        .sliderLabels {
-          margin-top: 0.5rem;
-          display: flex;
-          justify-content: space-between;
-          font-size: 0.75rem;
-          color: #6b7280;
-        }
-
-        .amountDisplay {
-          border-radius: 0.75rem;
-          border: 1px solid #334155;
-          background-color: rgba(30, 41, 59, 0.5);
-          padding: 1rem;
-          text-align: center;
-          backdrop-filter: blur(4px);
-        }
-        .amountText {
-          font-size: 1.5rem;
-          font-weight: 700;
-          letter-spacing: 0.05em;
-          color: #facc15;
-        }
-        @media (min-width: 640px) {
-          .amountText {
-            font-size: 1.875rem;
-          }
-        }
-
-        .profitSection {
+        .section-title {
+          font-family: 'Anton', sans-serif;
+          font-size: 2.8rem;
           margin-bottom: 2rem;
-          border-radius: 0.75rem;
-          border: 1px solid #334155;
-          background-image: linear-gradient(to right, #0f172a, #1e293b, #0f172a);
-          padding: 1rem;
-          box-shadow: inset 0 2px 4px 0 rgba(0,0,0,0.06);
+          color: #2c3e50;
+          line-height: 1.2;
         }
-        @media (min-width: 640px) {
-          .profitSection {
-            padding: 1.5rem;
-          }
+
+        .highlight-orange {
+          color: #FF9800;
         }
-        .profitTitle {
-          margin-bottom: 0.5rem;
-          font-size: 0.875rem;
-          font-weight: 500;
-          letter-spacing: 0.1em;
-          color: #9ca3af;
+
+        .highlight-green {
+          color: #4CAF50;
+        }
+        
+        .strong-text {
+          font-weight: 700;
+        }
+
+        .cta-button {
+          background: linear-gradient(90deg, #FF9800, #f57c00);
+          color: #fff;
+          border: none;
+          padding: 15px 35px;
+          font-size: 1.2rem;
+          font-weight: 700;
+          border-radius: 50px;
+          cursor: pointer;
+          transition: all 0.3s ease;
+          box-shadow: 0 5px 15px rgba(255, 152, 0, 0.4);
           text-transform: uppercase;
         }
-        .profitSubtitle {
-          margin-bottom: 1rem;
-          font-size: 0.75rem;
-          color: #6b7280;
-        }
-        .profitAmount {
-          margin-bottom: 0.5rem;
-          font-size: 1.5rem;
-          font-weight: 700;
-          color: #4ade80;
-          animation: pulse 2.5s cubic-bezier(0.4, 0, 0.6, 1) infinite;
-        }
-        @media (min-width: 640px) { .profitAmount { font-size: 1.875rem; } }
-        @media (min-width: 1024px) { .profitAmount { font-size: 2.25rem; } }
 
-        .profitGlow {
-          position: absolute;
-          inset: 0;
-          border-radius: 0.5rem;
-          background-color: rgba(74, 222, 128, 0.1);
-          filter: blur(1.5rem);
+        .cta-button:hover {
+          transform: translateY(-3px);
+          box-shadow: 0 8px 20px rgba(255, 152, 0, 0.6);
         }
 
-        .realtimeBadge {
-          margin-top: 0.75rem;
+        /* Hero Section */
+        .hero-section {
+          background: #2c3e50;
+          color: #fff;
+          padding: 80px 0;
           display: flex;
           align-items: center;
           justify-content: center;
-          gap: 0.5rem;
-        }
-        .liveBounceGreen {
-          height: 0.5rem;
-          width: 0.5rem;
-          border-radius: 9999px;
-          background-color: #4ade80;
-          animation: bounce 1s infinite;
+          flex-wrap: wrap;
+          gap: 2rem;
         }
 
-        .ctaButton {
-          position: relative;
-          width: 100%;
-          transform: scale(1);
-          border-radius: 0.75rem;
-          background-image: linear-gradient(to right, #f59e0b, #facc15, #f59e0b);
-          padding: 1rem 1.5rem;
-          font-size: 1rem;
-          font-weight: 700;
-          color: #000000;
-          box-shadow: 0 10px 15px -3px rgba(0,0,0,0.1), 0 4px 6px -2px rgba(0,0,0,0.05);
-          transition: all 0.3s ease;
-          border: none;
-          cursor: pointer;
-        }
-        .ctaButton:hover {
-          transform: scale(1.05);
-          background-image: linear-gradient(to right, #d97706, #f59e0b, #d97706);
-          box-shadow: 0 0 25px rgba(251, 191, 36, 0.25);
-        }
-        .ctaButton:active {
-          transform: scale(0.95);
-        }
-
-        .ctaText {
-          position: relative;
-          z-index: 10;
-          display: flex;
-          align-items: center;
-          justify-content: center;
-        }
-
-        .ctaHoverGlow {
-          position: absolute;
-          inset: 0;
-          border-radius: 0.75rem;
-          background-image: linear-gradient(to right, rgba(252, 211, 77, 0.5), rgba(217, 119, 6, 0.5));
-          opacity: 0;
-          filter: blur(1rem);
-          transition: opacity 0.3s ease;
-        }
-        .ctaButton:hover .ctaHoverGlow {
-          opacity: 1;
-        }
-
-        .trustIndicators {
-          margin-top: 1rem;
-          display: flex;
-          flex-direction: column;
-          align-items: center;
-          justify-content: center;
-          gap: 0.5rem;
-          font-size: 0.75rem;
-          color: #6b7280;
-        }
-        @media (min-width: 640px) {
-          .trustIndicators {
-            flex-direction: row;
-            gap: 1rem;
-          }
-        }
-        .indicatorItem {
-          display: flex;
-          align-items: center;
-        }
-        .indicatorDotGreen {
-          margin-right: 0.25rem;
-          height: 0.5rem;
-          width: 0.5rem;
-          border-radius: 9999px;
-          background-color: #22c55e;
-        }
-        .indicatorDotBlue {
-          margin-right: 0.25rem;
-          height: 0.5rem;
-          width: 0.5rem;
-          border-radius: 9999px;
-          background-color: #3b82f6;
-        }
-        .indicatorSeparator {
-          display: none;
-        }
-        @media (min-width: 640px) {
-          .indicatorSeparator {
-            display: block;
-            height: 0.25rem;
-            width: 0.25rem;
-            border-radius: 9999px;
-            background-color: #4b5563;
-          }
-        }
-
-        .nextSection {
-          background-color: #1e293b;
-          padding-top: 3rem;
-          padding-bottom: 3rem;
-          transition: all 1s ease-in-out;
-        }
-        @media (min-width: 1024px) {
-          .nextSection {
-            padding-top: 5rem;
-            padding-bottom: 5rem;
-          }
-        }
-
-        .nextSectionContent {
-          max-width: 56rem;
-          margin-left: auto;
-          margin-right: auto;
-          color: #ffffff;
-        }
-
-        .problemTitle {
-          margin-bottom: 1.5rem;
-          font-size: 1.5rem;
-          font-weight: 700;
-          background-image: linear-gradient(to right, #f87171, #dc2626);
-          -webkit-background-clip: text;
-          background-clip: text;
-          color: transparent;
-        }
-        @media (min-width: 640px) { .problemTitle { font-size: 1.875rem; } }
-        @media (min-width: 1024px) { .problemTitle { font-size: 2.25rem; } }
-
-        .problemList {
-          max-width: 48rem;
-          margin-left: auto;
-          margin-right: auto;
-          display: flex;
-          flex-direction: column;
-          gap: 1rem;
+        .hero-content {
+          flex: 1;
+          min-width: 300px;
+          max-width: 600px;
           text-align: left;
         }
 
-        .problemItem {
-          display: flex;
-          align-items: flex-start;
-          gap: 0.75rem;
-          border-radius: 0.75rem;
-          background-color: #0f172a;
-          padding: 1rem;
+        .main-headline {
+          font-family: 'Anton', sans-serif;
+          font-size: 3.5rem;
+          line-height: 1.1;
+          margin-bottom: 1rem;
         }
 
-        .solutionTitle {
-          margin-bottom: 1.5rem;
-          font-size: 1.5rem;
-          font-weight: 700;
-          background-image: linear-gradient(to right, #4ade80, #16a34a);
-          -webkit-background-clip: text;
-          background-clip: text;
-          color: transparent;
-        }
-        @media (min-width: 640px) { .solutionTitle { font-size: 1.875rem; } }
-        @media (min-width: 1024px) { .solutionTitle { font-size: 2.25rem; } }
-
-        .solutionDescription {
+        .sub-headline {
+          font-size: 1.2rem;
           margin-bottom: 2rem;
-          font-size: 1.125rem;
-          color: #d1d5db;
+          max-width: 500px;
+        }
+        
+        .hero-image-container {
+          flex: 1;
+          max-width: 500px;
+          min-width: 300px;
         }
 
-        .featuresGrid {
-          margin-bottom: 3rem;
-          display: grid;
-          grid-template-columns: 1fr;
-          gap: 1.5rem;
-        }
-        @media (min-width: 768px) {
-          .featuresGrid {
-            grid-template-columns: repeat(2, 1fr);
-          }
+        .hero-image {
+          width: 100%;
+          border-radius: 20px;
         }
 
-        .featureCard {
-          border-radius: 0.75rem;
-          border: 1px solid #334155;
-          background-color: #0f172a;
-          padding: 1.5rem;
+        /* Provocative Section */
+        .provocative-section {
+          padding: 60px 0;
+          background: #fff;
         }
-        .featureHeader {
+        
+        .provocative-grid {
+          display: flex;
+          align-items: center;
+          gap: 2rem;
+          flex-wrap: wrap;
+        }
+
+        .provocative-text {
+          flex: 1.5;
+          font-size: 1.1rem;
+        }
+        
+        .provocative-text p {
+            margin-bottom: 1rem;
+        }
+
+        .provocative-image {
+          flex: 1;
+          min-width: 280px;
+        }
+        
+        .provocative-image img {
+          width: 100%;
+          border-radius: 15px;
+        }
+
+        /* Problem Section */
+        .problem-section {
+          padding: 60px 0;
+        }
+        
+        .problem-content {
+          display: flex;
+          align-items: center;
+          gap: 3rem;
+          flex-wrap: wrap-reverse;
+        }
+        
+        .problem-image {
+          flex: 1;
+        }
+        
+        .problem-image img {
+          width: 100%;
+        }
+        
+        .problem-list {
+          flex: 1.2;
+        }
+
+        .list-title {
+          font-family: 'Anton', sans-serif;
+          font-size: 2.2rem;
+          color: #4CAF50;
+          margin-bottom: 0.5rem;
+        }
+
+        .list-subtitle {
+          margin-bottom: 1.5rem;
+          font-style: italic;
+          color: #555;
+        }
+        
+        .problem-list ul {
+          list-style: none;
+        }
+        
+        .problem-list li {
+          font-size: 1.1rem;
           margin-bottom: 1rem;
           display: flex;
           align-items: center;
         }
-        .featureTitle {
-          font-size: 1.25rem;
-          font-weight: 700;
-          color: #facc15;
+        
+        .problem-list li span {
+          margin-right: 10px;
+          font-size: 1.5rem;
         }
 
-        .testimonialSection {
-          margin-bottom: 3rem;
-          border-radius: 0.75rem;
-          border: 1px solid #334155;
-          background-image: linear-gradient(to right, #0f172a, #1e293b);
-          padding: 1.5rem;
+        /* Solution Section */
+        .solution-section {
+          padding: 60px 0;
+          background: #fff;
         }
-        @media (min-width: 1024px) {
-          .testimonialSection {
-            padding: 2rem;
-          }
-        }
-
-        .testimonialMainTitle {
+        
+        .solution-subtitle {
+          font-size: 1.5rem;
           margin-bottom: 1.5rem;
-          text-align: center;
-          font-size: 1.5rem;
+        }
+        
+        .solution-flow {
+          background: #e8f5e9;
+          border-left: 5px solid #4CAF50;
+          padding: 20px;
+          margin: 2rem auto;
+          border-radius: 8px;
           font-weight: 700;
-          color: #facc15;
+          max-width: 800px;
+        }
+        
+        .solution-images {
+          display: flex;
+          justify-content: center;
+          align-items: center;
+          gap: 1rem;
+          margin-top: 2rem;
+          flex-wrap: wrap;
+        }
+        
+        .solution-images img {
+          max-width: 250px;
+          width: 100%;
+          border-radius: 10px;
+          box-shadow: 0 4px 10px rgba(0,0,0,0.1);
         }
 
-        .testimonialCard {
-          border-radius: 0.75rem;
-          border: 1px solid #4b5563;
-          background-color: #1e293b;
-          padding: 1.5rem;
+        /* Benefits Section */
+        .benefits-section {
+          padding: 60px 0;
         }
-
-        .testimonialText {
-          margin-bottom: 1rem;
-          font-size: 1.125rem;
-          line-height: 1.625;
-          color: #d1d5db;
-          font-style: italic;
+        
+        .benefits-grid {
+          display: grid;
+          grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+          gap: 2rem;
+          margin-top: 2rem;
         }
-        .testimonialTextNoMargin {
-          font-size: 1.125rem;
-          line-height: 1.625;
-          color: #d1d5db;
-          font-style: italic;
-        }
-
-        .pricingSection {
-          border-radius: 0.75rem;
-          border: 1px solid rgba(245, 158, 11, 0.2);
-          background-image: linear-gradient(to right, rgba(245, 158, 11, 0.1), rgba(217, 119, 6, 0.1));
-          padding: 2rem;
+        
+        .benefit-item {
+          background: #fff;
+          padding: 30px;
+          border-radius: 10px;
           text-align: center;
+          box-shadow: 0 5px 15px rgba(0,0,0,0.05);
+          transition: transform 0.3s ease;
         }
-        .pricingTitle {
+        
+        .benefit-item:hover {
+          transform: translateY(-5px);
+        }
+        
+        .benefit-item img {
+          width: 80px;
           margin-bottom: 1rem;
-          font-size: 1.5rem;
-          font-weight: 700;
-          color: #facc15;
         }
-        .originalPrice {
+        
+        .benefit-item h3 {
+          font-size: 1.3rem;
+          color: #4CAF50;
           margin-bottom: 0.5rem;
-          font-size: 0.875rem;
-          color: #9ca3af;
-          text-decoration-line: line-through;
         }
-        .specialPrice {
+
+        /* Testimonial Section */
+        .testimonial-section {
+          padding: 60px 0;
+          background: #fff;
+        }
+
+        .testimonial-subtitle {
+          text-align: center;
+          max-width: 600px;
+          margin: 0 auto 2rem auto;
+          font-size: 1.1rem;
+        }
+        
+        .testimonial-grid {
+          display: grid;
+          grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+          gap: 1rem;
+        }
+
+        .testimonial-grid img {
+          width: 100%;
+          border-radius: 8px;
+          box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+        }
+        
+        .influencer-testimonial {
+          display: flex;
+          align-items: center;
+          gap: 2rem;
+          background: #f4f4f4;
+          padding: 30px;
+          border-radius: 15px;
+          margin-top: 3rem;
+          flex-wrap: wrap;
+        }
+        
+        .influencer-testimonial img {
+          max-width: 200px;
+          border-radius: 10px;
+        }
+
+        .influencer-testimonial h3 {
+          font-size: 1.5rem;
+          color: #FF9800;
           margin-bottom: 1rem;
-          font-size: 1.875rem;
-          font-weight: 700;
-          color: #4ade80;
         }
-        .finalCtaButton {
-          transform: scale(1);
-          border-radius: 0.75rem;
-          background-image: linear-gradient(to right, #22c55e, #16a34a);
-          padding: 1rem 2rem;
-          font-size: 1.125rem;
-          font-weight: 700;
-          color: #ffffff;
-          box-shadow: 0 10px 15px -3px rgba(0,0,0,0.1), 0 4px 6px -2px rgba(0,0,0,0.05);
-          transition: all 0.3s ease;
-          border: none;
-          cursor: pointer;
+
+        .yt-thumbnail {
+            margin-top: 1rem;
+            max-width: 300px !important;
         }
-        .finalCtaButton:hover {
-          transform: scale(1.05);
-          background-image: linear-gradient(to right, #16a34a, #15803d);
+
+        /* Offer Section */
+        .offer-section {
+          padding: 60px 0;
+          background: #2c3e50;
+          color: #fff;
+        }
+        
+        .promo-button-image {
+          display: block;
+          margin: 0 auto 2rem auto;
+          max-width: 500px;
+          width: 100%;
+        }
+
+        .offer-content {
+          display: flex;
+          align-items: center;
+          gap: 3rem;
+          background: rgba(255,255,255,0.05);
+          padding: 40px;
+          border-radius: 20px;
+          flex-wrap: wrap;
+        }
+        
+        .offer-product {
+          flex: 1;
+        }
+        .offer-product img {
+          width: 100%;
+        }
+        
+        .offer-details {
+          flex: 1.5;
+        }
+
+        .offer-title {
+          font-family: 'Anton', sans-serif;
+          font-size: 2.5rem;
+          margin-bottom: 1.5rem;
+        }
+        
+        .offer-details ul {
+          list-style: none;
+          margin-bottom: 2rem;
+        }
+        
+        .offer-details li {
+          font-size: 1.1rem;
+          margin-bottom: 1rem;
+          display: flex;
+          align-items: center;
+        }
+        
+        .bonus-item {
+          background: rgba(255, 152, 0, 0.1);
+          padding: 10px;
+          border-radius: 8px;
+        }
+        
+        .bonus-item img {
+          width: 50px;
+          margin-right: 15px;
+        }
+        
+        .final-cta {
+          width: 100%;
+          padding: 20px;
+          font-size: 1.5rem;
+        }
+
+        .quality-badge {
+          display: block;
+          margin: 1.5rem auto 0 auto;
+          max-width: 200px;
+        }
+
+        /* Footer Section */
+        .footer-section {
+          padding: 50px 0;
+          background: #1a2533;
+          color: #ccc;
+        }
+        
+        .footer-section h2 {
+          font-family: 'Anton', sans-serif;
+          font-size: 2rem;
+          line-height: 1.3;
+          margin-bottom: 1rem;
+        }
+
+        .footer-section p {
+          font-size: 1.1rem;
+          margin-bottom: 0.5rem;
+        }
+        
+        .footer-closing {
+          margin-top: 1.5rem;
+          margin-bottom: 2rem !important;
+        }
+        
+        /* Responsive */
+        @media (max-width: 768px) {
+          .section-title {
+            font-size: 2.2rem;
+          }
+          .main-headline {
+            font-size: 2.8rem;
+          }
+          .hero-section {
+            padding: 40px 20px;
+            text-align: center;
+          }
+          .hero-content {
+            text-align: center;
+          }
         }
       `}</style>
     </>

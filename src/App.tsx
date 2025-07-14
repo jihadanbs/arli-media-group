@@ -1,5 +1,3 @@
-import React from "react";
-
 function App() {
   // Fungsi untuk menangani klik CTA utama
   const handleCTAClick = () => {

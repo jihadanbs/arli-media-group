@@ -1,86 +1,18 @@
 @import "tailwindcss";
 
-/*
-  ==================================================================
-  KONFIGURASI TEMA (Pengganti tailwind.config.js)
-  ==================================================================
-  Kita mendefinisikan semua warna, font, dll. di sini
-  menggunakan sintaks seperti CSS Custom Properties.
-  Tailwind v4 akan otomatis membuat utility class dari sini.
-  (contoh: --color-brand-orange-dark akan membuat class bg-brand-orange-dark)
-*/
 @theme {
-  /* Colors */
-  --color-brand-dark-blue: #0f172a;
-  --color-brand-slate: #1e293b;
-  --color-brand-slate-border: #334155;
-  --color-brand-yellow: #facc15;
-  --color-brand-orange: #ff9800;
-  --color-brand-orange-dark: #f59e0b;
-  --color-brand-orange-darker: #d97706;
+  /* Colors from your Visual Direction */
   --color-brand-green: #4caf50;
-  --color-brand-green-light: #4ade80;
-  --color-brand-text-primary: #ffffff;
-  --color-brand-text-secondary: #9ca3af;
-  --color-brand-text-tertiary: #6b7280;
+  --color-brand-orange: #ff9800;
 
-  /* Font Family */
+  /* Fonts from your Visual Direction */
   --font-family-montserrat: "Montserrat", sans-serif;
   --font-family-anton: "Anton", sans-serif;
-
-  /* Animation (Keyframes didefinisikan secara normal di bawah) */
-  --animation-pulse: pulse 1.5s infinite;
-  --animation-pulse-slow: pulse 2.5s cubic-bezier(0.4, 0, 0.6, 1) infinite;
-  --animation-bounce: bounce 1s infinite;
-  --animation-fadeIn: fadeIn 1s ease-in-out;
 }
 
-/*
-  ==================================================================
-  DEFINISI KEYFRAMES
-  ==================================================================
-  Keyframes tetap didefinisikan menggunakan sintaks CSS standar.
-*/
-@keyframes pulse {
-  0%,
-  100% {
-    opacity: 1;
-    transform: scale(1);
-  }
-  50% {
-    opacity: 0.7;
-    transform: scale(1.1);
-  }
-}
+/* Import Google Fonts */
+@import url("https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&family=Anton&display=swap");
 
-@keyframes bounce {
-  0%,
-  100% {
-    transform: translateY(-25%);
-    animation-timing-function: cubic-bezier(0.8, 0, 1, 1);
-  }
-  50% {
-    transform: translateY(0);
-    animation-timing-function: cubic-bezier(0, 0, 0.2, 1);
-  }
-}
-
-@keyframes fadeIn {
-  from {
-    opacity: 0;
-    transform: translateY(20px);
-  }
-  to {
-    opacity: 1;
-    transform: translateY(0);
-  }
-}
-
-/*
-  ==================================================================
-  SETUP & CUSTOM UTILITY
-  ==================================================================
-*/
 @layer base {
   html {
     @apply scroll-smooth;
@@ -95,19 +27,32 @@
     width: theme("spacing.7");
     cursor: pointer;
     border-radius: theme("borderRadius.full");
-    border: 2px solid white;
-    /* Menggunakan variabel warna yang sudah kita definisikan di @theme */
-    background-image: linear-gradient(
-      to right,
-      var(--color-brand-orange-dark),
-      var(--color-brand-yellow)
-    );
-    box-shadow: theme("boxShadow.lg");
-    transition: all 200ms ease-in-out;
+    background-color: theme("colors.brand-orange");
+    border: 4px solid white;
+    box-shadow: 0 0 10px rgba(255, 152, 0, 0.5);
   }
+}
 
-  .slider-thumb:hover::-webkit-slider-thumb {
-    transform: scale(1.1);
-    box-shadow: theme("boxShadow.xl");
+@keyframes spin-slow {
+  from {
+    transform: rotate(0deg);
   }
+  to {
+    transform: rotate(360deg);
+  }
+}
+@keyframes bounce-slow {
+  0%,
+  100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-10px);
+  }
+}
+.animate-spin-slow {
+  animation: spin-slow 20s linear infinite;
+}
+.animate-bounce-slow {
+  animation: bounce-slow 3s ease-in-out infinite;
 }
